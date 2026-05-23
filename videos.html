@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cine de Especies - Guardianes de la Naturaleza</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <style>
+        :root {
+            --azul-cielo: #3498db;
+            --azul-marino: #2c3e50;
+            --naranja: #e67e22;
+            --verde-pasto: #2ecc71;
+            --hueso: #fffaf0;
+        }
+
+        body {
+            background-color: var(--hueso);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 100px;
+        }
+
+        .navbar { background-color: var(--azul-cielo) !important; }
+
+        /* --- ESTILO DE LAS TARJETAS DE VIDEO --- */
+        .card-video {
+            border-radius: 25px;
+            overflow: hidden;
+            border: 5px solid white;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            background: white;
+            margin-bottom: 20px;
+        }
+
+        .card-video:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15) !important;
+        }
+
+        .ratio {
+            border-bottom: 4px solid #f0f0f0;
+        }
+
+        .animal-header {
+            color: var(--azul-marino);
+            font-weight: bold;
+            border-bottom: 4px solid var(--naranja);
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-top: 40px;
+            margin-bottom: 25px;
+        }
+
+        /* --- REDES SOCIALES --- */
+        .social-icon {
+            font-size: 1.5rem;
+            display: inline-block;
+            transition: transform 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+        }
+        .social-icon:hover { transform: scale(1.25); }
+        .social-icon.fb:hover { color: #1877F2 !important; }
+        .social-icon.ig:hover { color: #E1306C !important; }
+        .social-icon.tk:hover { color: #00f2fe !important; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="index.html">MX GUARDIANES</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav fw-bold">
+                    <li class="nav-item"><a class="nav-link text-white" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="index.html">Zona de Juegos</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="fotos.html">Fotos</a></li>
+                    <li class="nav-item"><a class="nav-link text-white active" href="videos.html">Videos</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold" style="color: var(--naranja); text-shadow: 2px 2px 0px #ffe4c4;">🎬 Cine de las Especies</h1>
+            <p class="fs-4 text-muted">¡Dale play y descubre los secretos más divertidos de nuestros amigos animales!</p>
+        </div>
+
+        <div>
+            <h2 class="animal-header">🦎 El Ajolote Mágico</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card card-video shadow-sm">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/dEjQPX7r_OE?si=gVMkmAuva7EUOnZb" title="Ajolote Video 1" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="fw-bold text-dark">¿Quién es el Ajolote? 🌊</h5>
+                            <p class="text-muted mb-0">Un divertido recorrido para conocer sus superpoderes de regeneración y su vida en Xochimilco.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-video shadow-sm">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/2URQO_i7uVY?si=NYcugx2wYD21XXH7" title="Ajolote Video 2" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="fw-bold text-dark">Cuidando la casa del Ajolote 🛶</h5>
+                            <p class="text-muted mb-0">Aprende por qué son tan importantes los canales y cómo podemos ayudar a mantenerlos limpios.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="animal-header" style="border-bottom-color: var(--azul-cielo);">🐬 La Vaquita Marina</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card card-video shadow-sm">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/p4EUmK1PcXc?si=dMgjZWaAaj0olxR5" title="Vaquita Video 1" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="fw-bold text-dark">El fantasma del Mar de Cortés 🌊</h5>
+                            <p class="text-muted mb-0">Conoce al cetáceo más pequeñito del mundo y por qué es tan difícil verla nadar.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-video shadow-sm">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/7-J8WKgbJzg?si=W_pyjHcug1eaILtP" title="Vaquita Video 2" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="fw-bold text-dark">Misión Proteger el Océano 🐬</h5>
+                            <p class="text-muted mb-0">Los esfuerzos científicos más asombrosos para salvar a las últimas vaquitas de nuestro país.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="animal-header" style="border-bottom-color: #f1c40f;">🐆 El Jaguar Sagrado</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card card-video shadow-sm">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/hhiOzKADHoo?si=DgyzOMh7UIAtX2cW" title="Jaguar Video 1" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="fw-bold text-dark">El Rey de las Selvas Mayas 🌿</h5>
+                            <p class="text-muted mb-0">Explora cómo caza, cómo trepa árboles y por qué era un animal sagrado para nuestros antepasados.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-video shadow-sm">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/NPwmM9JZGMc?si=6KUVevQOLBDnwVuM" title="Jaguar Video 2" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="fw-bold text-dark">Rastreadores de Jaguares 🕵️‍♂️</h5>
+                            <p class="text-muted mb-0">Mira cómo los biólogos usan cámaras ocultas en la selva para cuidar el camino del jaguar.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="animal-header" style="border-bottom-color: #7f8c8d;">🐺 El Lobo Gris Mexicano</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card card-video shadow-sm">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/gzQz6HNzyWs?si=JiFcFeC6db-Qt_zj" title="Lobo Video 1" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="fw-bold text-dark">El Regreso del Lobo a las Montañas 🏔️</h5>
+                            <p class="text-muted mb-0">Una emocionante historia de cómo este fantástico canino regresó a correr libre por el norte de México.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-video shadow-sm">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/sGh26EWswHA?si=AtorS6rKwTkepaXM" title="Lobo Video 2" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="fw-bold text-dark">La Vida en Manada 🐾</h5>
+                            <p class="text-muted mb-0">Descubre cómo se comunican con aullidos y cómo cuidan juntos a sus pequeños cachorros.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="animal-header" style="border-bottom-color: #a0522d;">🐰 El Teporingo de los Volcanes</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card card-video shadow-sm">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/TEmuCKjdMyo?si=ph5lFdO1jNAOzQ6t" title="Teporingo Video 1" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="fw-bold text-dark">El Conejo más Pequeño y Saltarín 🌋</h5>
+                            <p class="text-muted mb-0">Descubre al tierno teporingo y cómo logra vivir feliz en lo alto de los volcanes de México.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-video shadow-sm">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/KchCCHVOPgw?si=IbXUKRQH1XaQdwhF" title="Teporingo Video 2" allowfullscreen></iframe>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="fw-bold text-dark">Cuidando los Bosques de Zacatuche 🌲</h5>
+                            <p class="text-muted mb-0">Por qué los pastizales de alta montaña son vitales para que este pequeñín no desaparezca.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="bg-dark text-white py-4 border-top border-secondary position-relative">
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between">
+            
+            <div class="mx-auto text-center mb-3 mb-md-0" style="max-width: 500px;">
+                <p class="mb-1 fw-bold fs-5">Guardianes de las Especies de México &copy; 2026</p>
+                <p class="mb-0 fw-medium text-secondary" style="letter-spacing: 0.5px;">
+                    Hecho por <span class="text-white fw-bold">Naomi García Martínez</span>
+                </p>
+            </div>
+            
+            <div class="position-md-absolute end-md-0 me-md-4 text-center">
+                <div class="d-inline-flex align-items-center">
+                    <a href="https://www.facebook.com/naomi.garcia.8736" target="_blank" class="text-white ms-4 social-icon fb">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/lunao_pixel/" target="_blank" class="text-white ms-4 social-icon ig">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@shawol0890?_r=1&_t=ZS-96aT9ktQS4D" target="_blank" class="text-white ms-4 social-icon tk">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+	</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

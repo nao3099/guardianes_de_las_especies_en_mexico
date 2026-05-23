@@ -16,7 +16,7 @@
             --verde-pasto: #2ECC71;
             --azul-cielo: #3498DB;
             --naranja: #E67E22;
-            --crema-arena: #FDF5E6;
+            --crema-arena: #FFEF91;
         }
 
         *, *::before, *::after {
@@ -70,7 +70,7 @@
         }
 
         .carousel-caption {
-            bottom: 25%;
+            bottom: 35%;
             background: rgba(44, 62, 80, 0.85);
             padding: 30px;
             border-radius: 20px;
@@ -92,7 +92,7 @@
         }
 
         .img-placeholder-card {
-            font-size: 4.5rem;
+            font-size: 5.5rem;
             padding: 25px 0;
             background-color: #f8f9fa;
             border-top-left-radius: 20px;
@@ -222,7 +222,110 @@
             border-radius: 15px;
         }
 		
+        /* --- ANIMACIÓN PARA LAS TARJETAS DE LA MISIÓN --- */
+        .alert {
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .alert:hover {
+            transform: translateY(-12px) scale(1.03); 
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important; 
+        }
+        
+        /* --- CENTRAR EL CUADRO DE TEXTO EN EL CARRUSEL --- */
+        .carousel-caption {
+            top: 50% !important;
+            bottom: auto !important;
+            transform: translateY(-50%) !important;
+            background-color: rgba(0, 0, 0, 0.65); 
+            padding: 30px !important;
+            border-radius: 20px;
+            max-width: 750px;
+            left: 50% !important;
+            right: auto !important;
+            transform: translate(-50%, -50%) !important; 
+            width: 85%; 
+        }
+        
+        /* --- ESTILOS DEL MEMORAMA INTERACTIVO --- */
+        .card-memo {
+            height: 110px; /* Alto de la tarjeta */
+            cursor: pointer;
+            perspective: 1000px; /* Le da el efecto 3D al girar */
+        }
+        
+        .card-memo-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 15px;
+        }
+        
+        /* cuando se le da clic, gira 180 grados */
+        .card-memo.flipped .card-memo-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .card-memo-front, .card-memo-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden; /* OCULTA LA CARA OPUESTA */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            font-size: 2.5rem;
+            user-select: none;
+            border: 3px solid #2ecc71; /* El borde verde bonito que ya tienes */
+        }
+        
+        /* Estilo para el corazón de enfrente */
+        .card-memo-front {
+            background-color: #ffffff;
+            color: #2ecc71;
+        }
+        
+        /* Estilo para el emoji de atrás */
+        .card-memo-back {
+            background-color: #ffffff;
+            transform: rotateY(180deg); /* El emoji nace volteado para que se vea al girar */
+        }
+		
+        /* Estilo para los botones de pestañas cuando no están activos */
+        .nav-pills .nav-link {
+            background-color: var(--gris-carbon);
+            color: white !important;
+            border-bottom: 4px solid #34495e;
+        }
+        .nav-pills .nav-link.active {
+            background-color: var(--naranja) !important;
+            border-bottom: 4px solid #d35400;
+        }
+        
+        /* --- ESTILOS PARA LOS ÍCONOS DEL FOOTER (DERECHA) --- */
+        .social-icon {
+            font-size: 1.5rem; /* Tamaño ideal para estar en una esquina */
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.25) translateY(-3px); /* Pequeño brinco hacia arriba */
+        }
+
+        .social-icon.fb:hover { color: #1877F2 !important; }
+        .social-icon.ig:hover { color: #E1306C !important; }
+        .social-icon.tk:hover {
+            color: #00f2fe !important;
+            text-shadow: 1px 0px #fe0979, -1px 0px #00f2fe; /* Efecto glitch sutil */
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
 
@@ -236,9 +339,8 @@
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="#que-son">¿Qué son?</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#especies">Nuestros Amigos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#problemas">El Planeta</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#mision">Misión Rescate</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Fotos.html">Fotos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="videos.html">Videos</a></li>
                     <li class="nav-item"><a class="nav-link" href="#juegos">Zona de Juegos</a></li>
                 </ul>
             </div>
@@ -247,45 +349,60 @@
 
 
     <header id="inicio" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#inicio" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#inicio" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="d-flex align-items-center justify-content-center h-100 bg-success bg-gradient text-white">
-                    <div class="carousel-caption">
-                        <h1 class="display-4 fw-bold text-white">¡Hola, Futuro Guardián!</h1>
-                        <p class="fs-4">Acompáñanos en una gran aventura para salvar a los animales más maravillosos y únicos de todo México.</p>
-                        <a href="#especies" class="btn btn-flat mt-2">Empezar Aventura 🚀</a>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="d-flex align-items-center justify-content-center h-100 bg-primary bg-gradient text-white">
-                    <div class="carousel-caption">
-                        <h1 class="display-4 fw-bold text-white">Especies Sorprendentes</h1>
-                        <p class="fs-4">Descubre datos curiosos, superpoderes naturales y cómo proteger el hogar de tus amigos animales.</p>
-                        <a href="#juegos" class="btn btn-flat mt-2">Ir a los Juegos 🎮</a>
-                    </div>
-                </div>
+        <div id="carruselGuardianes" class="carousel slide carousel-fade">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carruselGuardianes" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carruselGuardianes" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carruselGuardianes" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+
+    <div class="carousel-inner" style="max-height: 550px;">
+        
+        <div class="carousel-item active" data-bs-interval="4500">
+            <img src="https://images.unsplash.com/photo-1500485035595-cbe6f645feb1?q=80&w=1200" class="d-block w-100 img-fluid" alt="Naturaleza de México" style="filter: brightness(50%); object-fit: cover; height: 550px;">
+            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center h-100 text-center">
+                <h1 class="display-3 fw-bold text-white mb-3" style="text-shadow: 3px 3px 0px var(--naranja);">¡Bienvenidos, Pequeños Guardianes!</h1>
+                <p class="fs-4 text-light max-width-600 mb-4 fw-medium">Explora, juega y descubre cómo salvar a los animales más asombrosos y mágicos de México. ¡El planeta te necesita!</p>
+                <a href="#zona-juegos" class="btn btn-lg px-4 py-3 fw-bold shadow-sm" style="background-color: var(--naranja); color: white; border-radius: 30px; border-bottom: 5px solid #d35400;">🎮 ¡Ir a los Juegos!</a>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#inicio" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#inicio" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Siguiente</span>
-        </button>
+
+        <div class="carousel-item" data-bs-interval="4500">
+            <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1200" class="d-block w-100 img-fluid" alt="Paisajes Geográficos" style="filter: brightness(45%); object-fit: cover; height: 550px;">
+            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center h-100 text-center">
+                <h1 class="display-3 fw-bold mb-3" style="color: #AEEEEE; text-shadow: 3px 3px 0px var(--azul-marino);">¡Explora la Geografía de México!</h1>
+                <p class="fs-4 text-light max-width-600 mb-4 fw-medium">Nuestro país tiene playas hermosas, desiertos misteriosos, selvas tropicales y volcanes gigantes. ¡Somos uno de los países con más variedad de paisajes en todo el mundo!</p>
+                <a href="https://kids.nationalgeographic.com/geography/countries/article/mexico" class="btn btn-lg px-4 py-3 fw-bold shadow-sm text-white" style="background-color: var(--azul-cielo); border-radius: 30px; border-bottom: 5px solid #2980b9;">🧭 ¡Iniciar Recorrido!</a>
+            </div>
+        </div>
+
+        <div class="carousel-item" data-bs-interval="4500">
+            <img src="https://images.unsplash.com/photo-1518638150340-f706e86654de?q=80&w=1200" class="d-block w-100 img-fluid" alt="Historia de México" style="filter: brightness(45%); object-fit: cover; height: 550px;">
+            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center h-100 text-center">
+                <h1 class="display-3 fw-bold mb-3" style="color: #FFD700; text-shadow: 3px 3px 0px var(--azul-marino);">¡Un Viaje por Nuestra Historia!</h1>
+                <p class="fs-4 text-light max-width-600 mb-4 fw-medium">Hace cientos de años, aquí vivieron culturas asombrosas como los Mayas y los Aztecas, quienes construyeron pirámides místicas y estudiaban las estrellas.</p>
+                <a href="#misiones" class="btn btn-lg px-4 py-3 fw-bold shadow-sm text-white" style="background-color: var(--verde-pasto); border-radius: 30px; border-bottom: 5px solid #27ae60;">⏳ ¡Viajar al Pasado!</a>
+            </div>
+        </div>
+
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carruselGuardianes" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon p-3 bg-dark rounded-circle" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carruselGuardianes" data-bs-slide="next">
+        <span class="carousel-control-next-icon p-3 bg-dark rounded-circle" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+    </button>
+</div>
     </header>
 
 
     <section id="que-son" class="container text-center">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h2 class="section-titulo">¿Qué son las Especies Endémicas?</h2>
+                <h2 class="section-titulo"><strong>¿Qué son las Especies Endémicas?</strong></h2>
                 <p class="fs-5 mt-4 leading-lg">
                     ¡Son animales súper especiales! Las especies <strong>endémicas</strong> son aquellas que <strong>solo viven en un lugar específico del mundo</strong>. Eso significa que los animalitos que vas a ver en este sitio solo nacen y viven de forma natural en los cielos, mares, bosques o selvas de nuestro hermoso México. <strong>¡Si no los cuidamos aquí, desaparecerán de todo el planeta!</strong>
                 </p>
@@ -297,7 +414,7 @@
     <section id="especies" class="bg-light">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="section-titulo">Nuestros 5 Amigos Endémicos</h2>
+                <h2 class="section-titulo"><strong>Nuestros 5 Amigos Endémicos</strong></h2>
                 <p class="fs-5 text-muted">Haz clic en el botón de cada tarjeta para descubrir todas sus sorpresas y fichas técnicas.</p>
             </div>
             
@@ -367,7 +484,7 @@
         <div class="container">
             <div class="row align-items-center g-5">
                 <div class="col-lg-5 text-center text-lg-start">
-                    <h2 class="section-titulo">¿Qué Amenaza a Nuestros Amigos?</h2>
+                    <h2 class="section-titulo"><strong>¿Qué Amenaza a Nuestros Amigos?</strong></h2>
                     <p class="fs-5 mt-3">Lamentablemente, las actividades de las personas están dañando la naturaleza de nuestro país. Haz clic en cada problema para conocer qué está pasando.</p>
                 </div>
                 <div class="col-lg-7">
@@ -434,7 +551,7 @@
 
     <section id="mision" class="container">
         <div class="text-center mb-5">
-            <h2 class="section-titulo">Tu Misión para Salvar el Planeta</h2>
+            <h2 class="section-titulo"><strong>Tu Misión para Salvar el Planeta</strong></h2>
             <p class="fs-5 text-muted">¡Tú tienes el poder de ayudar desde casa con estas sencillas acciones ecológicas!</p>
         </div>
 
@@ -474,7 +591,7 @@
     <section id="juegos" class="bg-light border-top">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="section-titulo">Zona de Juegos del Guardián</h2>
+                <h2 class="section-titulo"><strong>Zona de Juegos del Guardián</strong></h2>
                 <p class="fs-5 text-muted">¡Diviértete con nuestros dos juegos interactivos y demuestra tus superpoderes de explorador!</p>
             </div>
 
@@ -527,59 +644,6 @@
         </div>
     </section>
 
-    <style>
-        .card-memo {
-            height: 100px;
-            cursor: pointer;
-            perspective: 1000px;
-        }
-        .card-memo-inner {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.5s;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .card-memo.flipped .card-memo-inner {
-            transform: rotateY(180px);
-        }
-        .card-memo-front, .card-memo-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 15px;
-            font-size: 2.5rem;
-            user-select: none;
-        }
-        /* Reverso de la tarjeta (Cerrada) */
-        .card-memo-front {
-            background-color: var(--azul-marino);
-            color: white;
-            border: 3px solid white;
-        }
-        /* Frente de la tarjeta (Abierta) */
-        .card-memo-back {
-            background-color: white;
-            border: 3px solid var(--verde-pasto);
-            transform: rotateY(180px);
-        }
-        /* Estilo para los botones de pestañas cuando no están activos */
-        .nav-pills .nav-link {
-            background-color: var(--gris-carbon);
-            color: white !important;
-            border-bottom: 4px solid #34495e;
-        }
-        .nav-pills .nav-link.active {
-            background-color: var(--naranja) !important;
-            border-bottom: 4px solid #d35400;
-        }
-    </style>
 	<button id="btn-musica" class="btn shadow" style="position: fixed; bottom: 20px; left: 20px; z-index: 2000; background-color: var(--naranja); color: white; border-radius: 50%; width: 60px; height: 60px; font-size: 1.8rem; border: 3px solid white; border-bottom: 5px solid #d35400;">
         🔈
     </button>
@@ -587,19 +651,41 @@
     <audio id="musica-fondo" loop src="audio/musica_ambiente.mp3"></audio>
     <audio id="sonido-correcto" src="audio/correcto.mp3"></audio>
     <audio id="sonido-victoria" src="audio/victoria.mp3"></audio>
-	<footer class="bg-dark text-white text-center py-4 border-top border-secondary">
-        <div class="container">
-            <p class="mb-1 fw-bold">🐢 Guardianes de las Especies de México &copy; 2026</p>
-            <p class="small text-secondary mb-0">Proyecto Final • Diseñado por Naomi García Martínez</p>
+	
+	<footer class="bg-dark text-white py-4 border-top border-secondary position-relative">
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-between">
+            
+            <div class="mx-auto text-center mb-3 mb-md-0" style="max-width: 500px;">
+                <p class="mb-1 fw-bold fs-5">Guardianes de las Especies de México &copy; 2026</p>
+                <p class="mb-0 fw-medium text-secondary" style="letter-spacing: 0.5px;">
+                    Hecho por <span class="text-white fw-bold">Naomi García Martínez</span>
+                </p>
+            </div>
+            
+            <div class="position-md-absolute end-md-0 me-md-4 text-center">
+                <div class="d-inline-flex align-items-center">
+                    <a href="https://www.facebook.com/naomi.garcia.8736" target="_blank" class="text-white ms-4 social-icon fb">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/lunao_pixel/" target="_blank" class="text-white ms-4 social-icon ig">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@shawol0890?_r=1&_t=ZS-96aT9ktQS4D" target="_blank" class="text-white ms-4 social-icon tk">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+
         </div>
-    </footer>
-
-
+    </div>
+	</footer>
+	
     <div class="modal fade" id="modalAjolote" tabindex="-1" aria-labelledby="ajoloteLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header text-white" style="background-color: var(--azul-cielo);">
-                    <h5 class="modal-title fs-4" id="ajoloteLabel">Ficha del Ajolote 🦎</h5>
+                    <h2 class="modal-title fs-4" id="ajoloteLabel"><strong>Ajolote Mexicano</strong> 🦎</h2>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body p-4">
@@ -609,8 +695,7 @@
                     </div>
 
                     <div class="text-center">
-                        <p class="fs-4 mb-1"><strong>Nombre común:</strong> Ajolote Mexicano</p>
-                        <p class="fs-5 mb-3 text-muted"><em>Nombre científico: Ambystoma mexicanum</em></p>
+                        <p class="fs-5 mb-3 text-muted"><em><strong>Nombre científico:</strong> Ambystoma mexicanum</em></p>
                         <div class="mb-4 p-2 bg-danger bg-opacity-10 text-danger rounded fw-bold d-inline-block px-4">
                             ⚠️ ESTADO DE CONSERVACIÓN: EN PELIGRO CRÍTICO DE EXTINCIÓN
                         </div>
@@ -631,7 +716,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header text-white" style="background-color: var(--azul-cielo);">
-                    <h5 class="modal-title fs-4" id="vaquitaLabel">Ficha de la Vaquita Marina 🌊</h5>
+                    <h2 class="modal-title fs-4" id="vaquitaLabel"><strong>Vaquita Marina 🌊</strong></h2>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body p-4">
@@ -641,8 +726,7 @@
                     </div>
 
                     <div class="text-center">
-                        <p class="fs-4 mb-1"><strong>Nombre común:</strong> Vaquita Marina</p>
-                        <p class="fs-5 mb-3 text-muted"><em>Nombre científico: Phocoena sinus</em></p>
+                        <p class="fs-5 mb-3 text-muted"><em><strong>Nombre científico:</strong> Phocoena sinus</em></p>
                         <div class="mb-4 p-2 bg-danger bg-opacity-10 text-danger rounded fw-bold d-inline-block px-4">
                             ⚠️ ESTADO DE CONSERVACIÓN: EN PELIGRO CRÍTICO DE EXTINCIÓN
                         </div>
@@ -663,7 +747,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header text-white" style="background-color: var(--azul-cielo);">
-                    <h5 class="modal-title fs-4" id="jaguarLabel">Ficha del Jaguar 🐆</h5>
+                    <h2 class="modal-title fs-4" id="jaguarLabel"><strong>Jaguar</strong> 🐆</h2>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body p-4">
@@ -673,8 +757,7 @@
                     </div>
 
                     <div class="text-center">
-                        <p class="fs-4 mb-1"><strong>Nombre común:</strong> Jaguar</p>
-                        <p class="fs-5 mb-3 text-muted"><em>Nombre científico: Panthera onca</em></p>
+                        <p class="fs-5 mb-3 text-muted"><em><strong>Nombre científico:</strong> Panthera onca</em></p>
                         <div class="mb-4 p-2 bg-warning bg-opacity-10 text-warning text-dark rounded fw-bold d-inline-block px-4">
                             ⚠️ ESTADO DE CONSERVACIÓN: EN PELIGRO / CASI AMENAZADO
                         </div>
@@ -695,7 +778,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header text-white" style="background-color: var(--azul-cielo);">
-                    <h5 class="modal-title fs-4" id="loboLabel">Ficha del Lobo Mexicano 🐺</h5>
+                    <h5 class="modal-title fs-4" id="loboLabel"><strong>Lobo Gris Mexicano</strong> 🐺</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body p-4">
@@ -705,8 +788,7 @@
                     </div>
 
                     <div class="text-center">
-                        <p class="fs-4 mb-1"><strong>Nombre común:</strong> Lobo Gris Mexicano</p>
-                        <p class="fs-5 mb-3 text-muted"><em>Nombre científico: Canis lupus baileyi</em></p>
+                        <p class="fs-5 mb-3 text-muted"><em><strong>Nombre científico:</strong> Canis lupus baileyi</em></p>
                         <div class="mb-4 p-2 bg-danger bg-opacity-10 text-danger rounded fw-bold d-inline-block px-4">
                             ⚠️ ESTADO DE CONSERVACIÓN: EN PELIGRO CRÍTICO DE EXTINCIÓN (En recuperación)
                         </div>
@@ -727,7 +809,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header text-white" style="background-color: var(--azul-cielo);">
-                    <h5 class="modal-title fs-4" id="teporingoLabel">Ficha del Teporingo 🐰</h5>
+                    <h5 class="modal-title fs-4" id="teporingoLabel"><strong>Teporingo o Conejo de los Volcanes</strong> 🐰</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body p-4">
@@ -737,8 +819,7 @@
                     </div>
 
                     <div class="text-center">
-                        <p class="fs-4 mb-1"><strong>Nombre común:</strong> Teporingo o Conejo de los Volcanes</p>
-                        <p class="fs-5 mb-3 text-muted"><em>Nombre científico: Romerolagus diazi</em></p>
+                        <p class="fs-5 mb-3 text-muted"><em><strong>Nombre científico:</strong> Romerolagus diazi</em></p>
                         <div class="mb-4 p-2 bg-danger bg-opacity-10 text-danger rounded fw-bold d-inline-block px-4">
                             ⚠️ ESTADO DE CONSERVACIÓN: EN PELIGRO CRÍTICO DE EXTINCIÓN
                         </div>
